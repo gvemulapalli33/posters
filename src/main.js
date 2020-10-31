@@ -129,6 +129,7 @@ class App {
     document.body.addEventListener("click", event => {
       this.showRandomPoster(event);
       this.createOwnPoster(event);
+      this.addOwnPoster(event);
       this.showMainPoster(event);
       this.showSavedPoster(event);
     });
@@ -179,6 +180,26 @@ class App {
       this.$posterForm.classList.add('hidden');
       this.$mainPoster.classList.add('hidden');
       this.$savePoster.classList.remove('hidden');
+    }
+  }
+
+  addOwnPoster(event) {
+    const {target} = event;
+    if (target.classList.contains('make-poster')) {
+      event.preventDefault();
+      let form = document.forms.createPoster;
+      let imageUrl = form.elements.posterImageUrl.value;
+      let title = form.elements.posterTitle.value;
+      let quote = form.elements.posterQuote.value;
+      if (imageUrl && title && quote) {
+        this.titles.push(title);
+        this.images.push(imageUrl);
+        this.quotes.push(quote);
+        this.currentPoster = new Poster(imageUrl, title, quote);
+        this.showPoster();
+        this.$posterForm.classList.add('hidden');
+        this.$mainPoster.classList.remove('hidden');
+      }
     }
   }
 }
