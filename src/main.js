@@ -116,37 +116,70 @@ class App {
     this.$posterImg = document.querySelector('.poster-img');
     this.$posterTilte = document.querySelector('.poster-title');
     this.$posterQuote = document.querySelector('.poster-quote');
+    this.$posterForm = document.querySelector('.poster-form');
+    this.$mainPoster = document.querySelector('.main-poster');
+    this.$savePoster = document.querySelector('.saved-posters');
 
-    this.render();
+    this.generateRandomPoster();
+    this.showPoster();
     this.addEventListeners();
   }
 
   addEventListeners() {
     document.body.addEventListener("click", event => {
-      this.selectRandomPoster(event);
+      this.showRandomPoster(event);
+      this.createOwnPoster(event);
+      this.showMainPoster(event);
+      this.showSavedPoster(event);
     });
   }
 
-  selectRandomPoster(event) {
+  showRandomPoster(event) {
     const {target} = event;
     if (target.classList.contains('show-random')) {
-      this.createPoster();
-      this.render();
+      this.generateRandomPoster();
+      this.showPoster();
     }
   }
 
-  createPoster() {
+  generateRandomPoster() {
     let imageUrl = this.images[getRandomIndex(images)];
     let title = this.titles[getRandomIndex(titles)];
     let quote = this.quotes[getRandomIndex(quotes)];
     this.currentPoster = new Poster(imageUrl, title, quote);
   }
 
-  render() {
-    this.createPoster();
+  showPoster() {
     this.$posterImg.setAttribute('src', this.currentPoster.imageURL);
     this.$posterTilte.innerText = this.currentPoster.title;
     this.$posterQuote.innerText = this.currentPoster.quote;
+  }
+
+  createOwnPoster(event) {
+    const {target} = event;
+    if (target.classList.contains('show-form')) {
+      this.$posterForm.classList.remove('hidden');
+      this.$mainPoster.classList.add('hidden');
+      this.$savePoster.classList.add('hidden');
+    }
+  }
+
+  showMainPoster(event) {
+    const {target} = event;
+    if (target.classList.contains('show-main') || target.classList.contains('back-to-main')) {
+      this.$posterForm.classList.add('hidden');
+      this.$mainPoster.classList.remove('hidden');
+      this.$savePoster.classList.add('hidden');
+    }
+  }
+
+  showSavedPoster(event) {
+    const {target} = event;
+    if (target.classList.contains('show-saved')) {
+      this.$posterForm.classList.add('hidden');
+      this.$mainPoster.classList.add('hidden');
+      this.$savePoster.classList.remove('hidden');
+    }
   }
 }
 
