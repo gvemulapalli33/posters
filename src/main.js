@@ -119,6 +119,7 @@ class App {
     this.$posterForm = document.querySelector('.poster-form');
     this.$mainPoster = document.querySelector('.main-poster');
     this.$savePoster = document.querySelector('.saved-posters');
+    this.$savedPostersList = document.querySelector('.saved-posters-grid');
 
     this.generateRandomPoster();
     this.showPoster();
@@ -132,6 +133,11 @@ class App {
       this.addOwnPoster(event);
       this.showMainPoster(event);
       this.showSavedPoster(event);
+      this.savePoster(event);
+    });
+
+    document.body.addEventListener("dblclick", event => {
+      this.deleteSavedPoster(event);
     });
   }
 
@@ -174,9 +180,23 @@ class App {
     }
   }
 
+  displaySavedPosters() {
+    let savedPosters = this.savedPosters.map((poster) => {
+      return (
+       `<article class="mini-poster">
+           <img class="img" src=${poster.imageURL} alt=${poster.title}>
+           <h2 class="title">${poster.title}</h2>
+           <h4 class="quote">${poster.quote}</h4>
+        </article>`
+      )
+   }).join('');
+    this.$savedPostersList.innerHTML = savedPosters;
+  }
+
   showSavedPoster(event) {
     const {target} = event;
     if (target.classList.contains('show-saved')) {
+      this.displaySavedPosters();
       this.$posterForm.classList.add('hidden');
       this.$mainPoster.classList.add('hidden');
       this.$savePoster.classList.remove('hidden');
@@ -201,6 +221,32 @@ class App {
         this.$mainPoster.classList.remove('hidden');
       }
     }
+  }
+
+  savePoster(event) {
+    const {target} = event;
+    if (target.classList.contains('save-poster')) {
+      let duplicate = this.savedPosters.some((poster) => {
+          return (poster.imageURL === this.currentPoster.imageURL 
+            && poster.title === this.currentPoster.title 
+            && poster.quote === this.currentPoster.quote);
+      });
+
+      if (!duplicate) {
+          this.savedPosters.push(this.currentPoster);
+      }
+    }
+  }
+
+  deleteSavedPoster(event) {
+    const {target} = event;
+    let poster = target.closest('article');
+    let imageUrl = poster.querySelector('img').getAttribute('src');
+    let title = poster.querySelector('.title').innerText;
+    let quote = poster.querySelector('.quote').innerText;
+    this.savedPosters = this.savedPosters.filter((poster) => poster.imageURL !== imageUrl && 
+    poster.title !== title && poster.quote !== quote);
+    this.displaySavedPosters();
   }
 }
 
