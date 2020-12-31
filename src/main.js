@@ -2,24 +2,24 @@ import Poster from './poster.js';
 import "./styles.css";
 
 const images = [
-  "./assets/bees.jpg",
-  "./assets/bridge.jpg",
-  "./assets/butterfly.jpg",
-  "./assets/cliff.jpg",
-  "./assets/elephant.jpg",
-  "./assets/flock.jpg",
-  "./assets/fox.jpg",
-  "./assets/frog.jpg",
-  "./assets/horse.jpg",
-  "./assets/lion.jpg",
-  "./assets/mountain.jpg",
-  "./assets/pier.jpg",
-  "./assets/puffins.jpg",
-  "./assets/pug.jpg",
-  "./assets/runner.jpg",
-  "./assets/squirrel.jpg",
-  "./assets/tiger.jpg",
-  "./assets/turtle.jpg"
+  "../assets/bees.jpg",
+  "../assets/bridge.jpg",
+  "../assets/butterfly.jpg",
+  "../assets/cliff.jpg",
+  "../assets/elephant.jpg",
+  "../assets/flock.jpg",
+  "../assets/fox.jpg",
+  "../assets/frog.jpg",
+  "../assets/horse.jpg",
+  "../assets/lion.jpg",
+  "../assets/mountain.jpg",
+  "../assets/pier.jpg",
+  "../assets/puffins.jpg",
+  "../assets/pug.jpg",
+  "../assets/runner.jpg",
+  "../assets/squirrel.jpg",
+  "../assets/tiger.jpg",
+  "../assets/turtle.jpg"
 ];
 
 const titles = [
