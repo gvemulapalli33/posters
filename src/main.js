@@ -1,4 +1,5 @@
 import Poster from './poster.js';
+import "./styles.css";
 
 const images = [
   "./assets/bees.jpg",
