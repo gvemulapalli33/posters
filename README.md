@@ -14,6 +14,7 @@ Link to published site: https://gvemulapalli33.github.io/posters/
 ![screenshot](https://raw.github.com/gvemulapalli33/posters/master/initialScreen.png)
 ![screenshot](https://raw.github.com/gvemulapalli33/posters/master/randomImage.png)
 ![screenshot](https://raw.github.com/gvemulapalli33/posters/master/addPoster.png)
+![screenshot](https://raw.github.com/gvemulapalli33/posters/master/form.png)
 ![screenshot](https://raw.github.com/gvemulapalli33/posters/master/savePoster.png)
 ![screenshot](https://raw.github.com/gvemulapalli33/posters/master/savedPosters.png)
 
